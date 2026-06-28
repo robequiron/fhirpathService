@@ -1,0 +1,62 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <h5 class="mb-0">FHIRPath Evaluator</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <div class="mb-3">
+              <label for="evaluate" class="form-label fw-semibold">Evaluate</label>
+              <input
+                id="evaluate"
+                type="text"
+                class="form-control"
+                formControlName="evaluate"
+                placeholder="Enter FHIRPath expression..."
+              />
+              @if (form.get('evaluate')?.invalid && form.get('evaluate')?.touched) {
+                <div class="text-danger small mt-1">This field is required.</div>
+              }
+            </div>
+
+            <div class="mb-3">
+              <label for="resource" class="form-label fw-semibold">Resource</label>
+              <textarea
+                id="resource"
+                class="form-control font-monospace"
+                formControlName="resource"
+                rows="8"
+                placeholder="Paste FHIR resource JSON here..."
+              ></textarea>
+              @if (form.get('resource')?.invalid && form.get('resource')?.touched) {
+                <div class="text-danger small mt-1">This field is required.</div>
+              }
+            </div>
+
+            <div class="d-flex justify-content-end mb-3">
+              <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                Evaluate
+              </button>
+            </div>
+
+            <div class="mb-3">
+              <label for="result" class="form-label fw-semibold">Result</label>
+              <textarea
+                id="result"
+                class="form-control font-monospace bg-light"
+                formControlName="result"
+                rows="5"
+                placeholder="Result will appear here..."
+                readonly
+              ></textarea>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
